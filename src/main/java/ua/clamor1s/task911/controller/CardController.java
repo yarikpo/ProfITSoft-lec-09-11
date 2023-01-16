@@ -54,6 +54,13 @@ public class CardController {
         return cardService.search(page, query);
     }
 
+    @DeleteMapping
+    @ResponseStatus(HttpStatus.OK)
+    public RestResponse deleteAll() {
+        cardService.deleteAll();
+        return new RestResponse("OK");
+    }
+
 
 
 }

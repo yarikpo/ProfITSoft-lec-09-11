@@ -53,6 +53,10 @@ public class CardDao {
         }
     }
 
+    public void deleteAll() {
+        entityManager.createQuery("DELETE FROM Card c").executeUpdate();
+    }
+
     public CardAllInfoDto search(int page, CardQueryDto query) {
         final int recordsPerPage = 3;
         List<Card> cards = entityManager.createQuery("SELECT c from Card c WHERE " +

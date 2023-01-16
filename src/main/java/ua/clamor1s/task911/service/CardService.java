@@ -19,4 +19,6 @@ public interface CardService {
 
     CardAllInfoDto search(int page, CardQueryDto query);
 
+    void deleteAll();
+
 }

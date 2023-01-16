@@ -53,6 +53,11 @@ public class CardServiceImpl implements CardService {
         return dao.search(page, query);
     }
 
+    @Override
+    public void deleteAll() {
+        dao.deleteAll();
+    }
+
 
     private Card fromSaveDtoToModel(CardSaveDto cardDto) {
         return Card.builder()
