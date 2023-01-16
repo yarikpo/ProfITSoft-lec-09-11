@@ -1,19 +1,22 @@
 package ua.clamor1s.task911.service;
 
+import ua.clamor1s.task911.dto.*;
 import ua.clamor1s.task911.model.Card;
 
 import java.util.List;
 
 public interface CardService {
 
-    void saveCard(Card card);
+    int saveCard(CardSaveDto card);
 
-    Card getCard(int id);
+    CardDetailsDto getCard(int id);
 
-    void updateCard(Card card);
+    void updateCard(int id, CardSaveDto card);
 
     void deleteCard(int cardId);
 
-    List<Card> listAll();
+    CardAllDetailsDto listAll();
+
+    CardAllInfoDto search(CardQueryDto query);
 
 }
