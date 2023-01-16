@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ua.clamor1s.task911.dao.OperationDao;
+import ua.clamor1s.task911.dto.OperationSaveDto;
 import ua.clamor1s.task911.model.Operation;
 
 import java.util.List;
@@ -27,8 +28,8 @@ public class OperationServiceImpl implements OperationService {
     }
 
     @Override
-    public void saveOperation(Operation operation) {
-        dao.saveOperation(operation);
+    public int saveOperation(OperationSaveDto dto) {
+        return dao.saveOperation(dto);
     }
 
     @Override

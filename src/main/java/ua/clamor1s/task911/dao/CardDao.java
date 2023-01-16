@@ -27,6 +27,10 @@ public class CardDao {
                 .build();
     }
 
+    protected Card findCard(int id) {
+        return entityManager.find(Card.class, id);
+    }
+
 
     public CardAllDetailsDto listAll() {
         return new CardAllDetailsDto(entityManager.createQuery("SELECT c from Card c", Card.class).getResultList());
@@ -60,8 +64,6 @@ public class CardDao {
                 .setParameter("code", query.getCode())
                 .setParameter("cvv", query.getCvv())
                 .setParameter("date", query.getCreationDate())
-//                .setParameter("start", page * recordsPerPage)
-//                .setParameter("num", recordsPerPage)
                 .setMaxResults(recordsPerPage)
                 .setFirstResult(page * recordsPerPage)
                 .getResultList();
