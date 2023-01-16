@@ -27,13 +27,13 @@ public class CardDao {
                 .build();
     }
 
-    protected Card findCard(int id) {
+    public Card findCard(int id) {
         return entityManager.find(Card.class, id);
     }
 
 
     public CardAllDetailsDto listAll() {
-        return new CardAllDetailsDto(entityManager.createQuery("SELECT c from Card c", Card.class).getResultList());
+        return new CardAllDetailsDto(listCard2ListCardDetails(entityManager.createQuery("SELECT c from Card c", Card.class).getResultList()));
     }
 
     public void saveCard(Card card) {
@@ -84,6 +84,25 @@ public class CardDao {
                 .name(card.getName())
                 .surname(card.getSurname())
                 .build();
+    }
+
+    protected CardDetailsDto card2CardDetails(Card card) {
+        return CardDetailsDto.builder()
+                .cardId(card.getCardId())
+                .name(card.getName())
+                .surname(card.getSurname())
+                .code(card.getCode())
+                .cvv(card.getCvv())
+                .creationDate(card.getCreationDate())
+                .build();
+    }
+
+    private List<CardDetailsDto> listCard2ListCardDetails(List<Card> cards) {
+        List<CardDetailsDto> dtos = new ArrayList<>();
+        for (Card card : cards) {
+            dtos.add(card2CardDetails(card));
+        }
+        return dtos;
     }
 
 }

@@ -20,7 +20,7 @@ public class OperationSaveDto {
     @NotNull(message = "Amount can't be null.")
     private Integer amount;
 
-    @NotEmpty(message = "datetime has to be filled.")
+
     private Timestamp operationDatetime;
 
 }

@@ -1,5 +1,7 @@
 package ua.clamor1s.task911.service;
 
+import ua.clamor1s.task911.dto.OperationAllInfoDto;
+import ua.clamor1s.task911.dto.OperationDetailsDto;
 import ua.clamor1s.task911.dto.OperationSaveDto;
 import ua.clamor1s.task911.model.Operation;
 
@@ -9,12 +11,12 @@ public interface OperationService {
 
     void deleteOperation(int id);
 
-    void updateOperation(Operation operation);
+    void updateOperation(int id, OperationSaveDto dto);
 
     int saveOperation(OperationSaveDto operationDto);
 
-    Operation findOperationById(int id);
+    OperationDetailsDto findOperationById(int id);
 
-    List<Operation> findAll();
+    OperationAllInfoDto findAll();
 
 }

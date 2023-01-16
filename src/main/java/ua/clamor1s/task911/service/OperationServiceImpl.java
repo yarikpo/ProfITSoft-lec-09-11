@@ -3,8 +3,13 @@ package ua.clamor1s.task911.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ua.clamor1s.task911.dao.CardDao;
 import ua.clamor1s.task911.dao.OperationDao;
+import ua.clamor1s.task911.dto.CardSaveDto;
+import ua.clamor1s.task911.dto.OperationAllInfoDto;
+import ua.clamor1s.task911.dto.OperationDetailsDto;
 import ua.clamor1s.task911.dto.OperationSaveDto;
+import ua.clamor1s.task911.model.Card;
 import ua.clamor1s.task911.model.Operation;
 
 import java.util.List;
@@ -15,6 +20,8 @@ public class OperationServiceImpl implements OperationService {
 
     @Autowired
     private OperationDao dao;
+    @Autowired
+    private CardDao cardDao;
 
 
     @Override
@@ -23,7 +30,9 @@ public class OperationServiceImpl implements OperationService {
     }
 
     @Override
-    public void updateOperation(Operation operation) {
+    public void updateOperation(int id, OperationSaveDto dto) {
+        Operation operation = fromSaveDtoToModel(dto);
+        operation.setOperationId(id);
         dao.updateOperation(operation);
     }
 
@@ -34,13 +43,21 @@ public class OperationServiceImpl implements OperationService {
 
     @Override
     @Transactional(readOnly = true)
-    public Operation findOperationById(int id) {
+    public OperationDetailsDto findOperationById(int id) {
         return dao.findOperationById(id);
     }
 
     @Override
     @Transactional(readOnly = true)
-    public List<Operation> findAll() {
+    public OperationAllInfoDto findAll() {
         return dao.findAll();
+    }
+
+    private Operation fromSaveDtoToModel(OperationSaveDto cardDto) {
+        return Operation.builder()
+                .card(cardDao.findCard(cardDto.getCardId()))
+                .amount(cardDto.getAmount())
+                .operationDatetime(cardDto.getOperationDatetime())
+                .build();
     }
 }

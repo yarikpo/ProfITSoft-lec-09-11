@@ -17,7 +17,7 @@ public class CardDetailsDto {
 
     private String code;
 
-    private int cvv;
+    private Integer cvv;
 
     private Date creationDate;
 
