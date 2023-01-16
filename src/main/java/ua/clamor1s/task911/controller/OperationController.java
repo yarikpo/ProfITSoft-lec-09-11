@@ -52,4 +52,11 @@ public class OperationController {
         return new RestResponse("OK");
     }
 
+    @DeleteMapping
+    @ResponseStatus(HttpStatus.OK)
+    public RestResponse deleteAll() {
+        operationService.deleteAll();
+        return new RestResponse("OK");
+    }
+
 }

@@ -53,6 +53,11 @@ public class OperationServiceImpl implements OperationService {
         return dao.findAll();
     }
 
+    @Override
+    public void deleteAll() {
+        dao.deleteAll();
+    }
+
     private Operation fromSaveDtoToModel(OperationSaveDto cardDto) {
         return Operation.builder()
                 .card(cardDao.findCard(cardDto.getCardId()))

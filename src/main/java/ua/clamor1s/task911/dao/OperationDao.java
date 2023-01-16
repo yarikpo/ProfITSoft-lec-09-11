@@ -40,6 +40,10 @@ public class OperationDao {
         }
     }
 
+    public void deleteAll() {
+        entityManager.createQuery("DELETE FROM Operation o").executeUpdate();
+    }
+
     public OperationDetailsDto findOperationById(int id) {
         Operation operation = entityManager.find(Operation.class, id);
         return operation2OperationDetails(operation);

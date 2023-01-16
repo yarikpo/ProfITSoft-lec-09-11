@@ -1,8 +1,10 @@
 package ua.clamor1s.task911.dto;
 
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.extern.jackson.Jacksonized;
 
 import javax.validation.constraints.NotBlank;
@@ -11,6 +13,8 @@ import java.sql.Date;
 
 @Getter
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Jacksonized
 public class CardSaveDto {
 
