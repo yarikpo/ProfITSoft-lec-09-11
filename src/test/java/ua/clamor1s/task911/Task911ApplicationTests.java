@@ -86,7 +86,13 @@ class Task911ApplicationTests {
 		}
 	}
 
-	
+	@Test
+	void testCreateCardBadRequest() throws Exception {
+		mvc.perform(post("/api/cards")
+				.contentType(MediaType.APPLICATION_JSON)
+				.content("{}"))
+				.andExpect(status().isBadRequest());
+	}
 
 
 
