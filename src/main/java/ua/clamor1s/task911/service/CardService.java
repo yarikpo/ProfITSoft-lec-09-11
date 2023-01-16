@@ -17,6 +17,6 @@ public interface CardService {
 
     CardAllDetailsDto listAll();
 
-    CardAllInfoDto search(CardQueryDto query);
+    CardAllInfoDto search(int page, CardQueryDto query);
 
 }

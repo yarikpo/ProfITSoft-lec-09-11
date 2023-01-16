@@ -48,10 +48,10 @@ public class CardController {
         return new RestResponse("OK");
     }
 
-    @PostMapping("/_search")
+    @PostMapping("/_search/{page}")
     @ResponseStatus(HttpStatus.OK)
-    public CardAllInfoDto searchPagination(@RequestBody CardQueryDto query) {
-        return cardService.search(query);
+    public CardAllInfoDto searchPagination(@PathVariable int page, @RequestBody CardQueryDto query) {
+        return cardService.search(page, query);
     }
 
 

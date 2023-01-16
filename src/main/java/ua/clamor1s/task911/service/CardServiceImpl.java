@@ -49,8 +49,8 @@ public class CardServiceImpl implements CardService {
     }
 
     @Override
-    public CardAllInfoDto search(CardQueryDto query) {
-        return dao.search(query);
+    public CardAllInfoDto search(int page, CardQueryDto query) {
+        return dao.search(page, query);
     }
 
 

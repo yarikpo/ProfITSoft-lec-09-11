@@ -49,7 +49,8 @@ public class CardDao {
         }
     }
 
-    public CardAllInfoDto search(CardQueryDto query) {
+    public CardAllInfoDto search(int page, CardQueryDto query) {
+        final int recordsPerPage = 3;
         List<Card> cards = entityManager.createQuery("SELECT c from Card c WHERE " +
                 " (:name IS NULL OR c.name=:name) AND (:surname IS NULL OR c.surname=:surname) AND" +
                 " (:code IS NULL OR c.code=:code) AND (:cvv IS NULL OR c.cvv=:cvv) AND" +
@@ -59,6 +60,10 @@ public class CardDao {
                 .setParameter("code", query.getCode())
                 .setParameter("cvv", query.getCvv())
                 .setParameter("date", query.getCreationDate())
+//                .setParameter("start", page * recordsPerPage)
+//                .setParameter("num", recordsPerPage)
+                .setMaxResults(recordsPerPage)
+                .setFirstResult(page * recordsPerPage)
                 .getResultList();
         return new CardAllInfoDto(listCard2ListInfo(cards));
     }
